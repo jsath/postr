@@ -1,0 +1,105 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.button{
+    background-color: blue;
+    color: black;
+    margin-bottom: 5px;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+}
+
+.title{
+    color: yellow;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.wrapper2{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.header{
+    color: blue;
+}
+
+.text-center{
+    color:blue;
+}
+
+.nav{
+    background-color: tan;
+    margin-top: -10px;
+
+}
+
+.contents{
+    display: flex;
+    flex-direction: row;
+    gap: 500px;
+    justify-content: center;
+}
+
+.left{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    gap: 25px;
+}
+
+.right{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.welcome{
+    margin-top: 0px;
+}
+
+.container{
+    background-color: tan;
+    color: black;
+    width: fit-content;
+    margin-top: 10px;
+    border-radius: 2%;
+    border: 2px solid black ;
+}
+
+.belownav{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.messages{
+    flex: 1;
+}
+
+.send{
+    flex: 1;
+}
+
+.belowcover{
+    text-decoration: underline;
+}

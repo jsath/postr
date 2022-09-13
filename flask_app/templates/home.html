@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Wall</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+    <nav class="nav">
+        <div class="contents">
+            <div class="left">
+                <h1 class="header1">CodingDojo Wall</h1>
+            </div>
+            <div class="right">
+                <h3 class="welcome">Welcome {{first}}</h3>
+                <a href="/logout"><button class="button" >Logout</button></a> 
+            </div>
+        </div>
+    </nav>
+
+    <div class="belownav">
+
+        <div class="messages">
+            <div class="container">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{unread}} unread messages for you</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages %}
+                        <tr>
+                            {% if message.send_to == session['id'] %}
+                                <td>{{message.user.first_name}} said</td>
+                                <td>{{message.content}}</td>
+                                <td><a href="delete/{{message.id}}">Delete Message</a></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="send">
+            <div class="container">
+                <h3 class="belowcover">Send Messages</h3>
+                <h4>You have sent {{sent}} messages so far</h4>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color:red">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <table class="table table-dark">
+                    <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <form action="/send/{{user.id}}", method="POST">
+                            <td><label for="content">{{user.first_name}}</label></td>
+                            <td><input type="text" name="content"></td>
+                            <td><input type="submit" class="button" value="Send Message"></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>
