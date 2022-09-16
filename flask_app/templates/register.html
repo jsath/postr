@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+    <div class="box">
+        <div class="title-box">
+        <h3 class="book">JohannBook</h3>
+        </div>
+    <div class="form-box">
+        <form action="/register" method="POST">
+            <label for="first_name">First Name: </label><br>
+            <input type="text" name="first_name"><br>
+            <label for="last_name">Last Name: </label><br>
+            <input type="text" name="last_name"><br>
+            <label for="email">Email: </label><br>
+            <input type="text" name="email"><br>
+            <label for="password">Password: </label><br>
+            <input type="password" name="password"><br>
+            <label for="confirm_password">Confirm Password: </label><br>
+            <input type="password" name="confirm_password"><br>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if '!' in message %}
+                    <p style="color:red">{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <input type="submit" class="button" value="Register">
+        </form>
+        <a href="/">Back to Login</a>
+    </div>
+</body>
+</html>

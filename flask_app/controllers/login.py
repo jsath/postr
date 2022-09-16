@@ -23,9 +23,9 @@ def register():
         "confirm_password" : request.form["confirm_password"]
     }
     if not User.confirm(data):
-        return redirect('/')
+        return redirect('/createnew')
     if not User.register(data):
-        return redirect('/')
+        return redirect('/createnew')
     pw_hash = bcrypt.generate_password_hash(request.form["password"])
     data2 = { 
         "first_name" : request.form["first_name"], 
@@ -44,17 +44,8 @@ def home():
     if session["access"] == False:
         return redirect('/')
     first = session["name"] 
-    messages = Message.get_all()
-    users = User.get_all()
 
-    data = { 
-        "id" : session['id']
-    }
-
-    unread = Message.unread(data)
-    sent = Message.sent(data)
-
-    return render_template("home.html", first=first, messages=messages, users=users, unread=unread, sent=sent)
+    return render_template("home.html",first=first)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -79,25 +70,9 @@ def logout():
     session["access"] = False
     return redirect("/")
 
-@app.route("/send/<int:id>", methods=["POST"])
-def send(id):
-    
-    data = { 
-        "content" : request.form["content"], 
-        "send_to" : id, 
-        "user_id" : session['id']
-    }
-    if not Message.validate(data):
-        return redirect("/home")
-    Message.new_message(data)
-    return redirect("/home")
 
-@app.route("/delete/<int:id>")
-def delete(id):
-    data = {
-        "id": id
-    }
-    Message.delete(data)
-    return redirect("/home")
 
+@app.route("/createnew")
+def registering():
+    return render_template("/register.html")
 
