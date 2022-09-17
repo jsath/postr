@@ -195,12 +195,22 @@ body {
 }
 
 .newsholder{
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 800px;
+    gap: 25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #news > img{
+    width: 600px;
+}
 
-    height: 400px;
+#news{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
 }
