@@ -1,4 +1,4 @@
-from flask_app.controllers import login, messages
+from flask_app.controllers import login, messages, news
 from flask_app import app 
 
 

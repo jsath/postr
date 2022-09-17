@@ -4,28 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JohannBook</title>
+    <title>News</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
 </head>
 <body>
+    
     <nav class="nav">
         <div class="contents">
             <div class="left">
-                <h1 class="booknav">JohannBook</h1>
+                <a href="home"><h1 class="booknav">JohannBook</h1></a>
             </div>
             <div class="right">
                 <a href="/messages" class="nav-link">Messaging Platform</a>
-                <a href="/news" class="nav-link">News</a>
+                <a href="/home" class="nav-link">Home</a>
                 <a href="/logout"><button class="create-btn" >Logout</button></a> 
             </div>
         </div>
     </nav>
 
-
-
+    <div class="newsholder">
+        <div id="news" class="news0">
+        </div>
+        <div id="news" class="news1">
+        </div>
+        <div id="news" class="news2">
+        </div>
+        <div id="news" class="news3">
+        </div>
+        <div id="news" class="news4">
+        </div>
+        <div id="news" class="news5">
+        </div>
     </div>
 
 
+
+<script src="static/css/script.js"></script>
 </body>
 </html>

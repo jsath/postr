@@ -193,3 +193,14 @@ body {
     color: black;
     font-size: 20px;
 }
+
+.newsholder{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#news > img{
+
+    height: 400px;
+}
