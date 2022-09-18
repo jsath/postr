@@ -210,6 +210,10 @@ body {
     width: 600px;
 }
 
+#newscontent{
+    width: 600px;
+}
+
 #news{
     display: flex;
     flex-direction: column;
