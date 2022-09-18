@@ -197,7 +197,7 @@ body {
 .newsholder{
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 800px;
     gap: 25px;
@@ -206,7 +206,7 @@ body {
     font-family: 'lucida grande';
 }
 
-#news > img{
+#newscontent > img{
     width: 600px;
 }
 
