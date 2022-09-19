@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: #f0f2f5;
+    background: #cdcfd1;
     font-family: Arial, sans-serif;
 }
 
@@ -39,7 +39,12 @@ body {
 
 .nav{
     background-color: #166fe5;
+    opacity: 1;
     margin-top: -15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 
 .contents{
@@ -195,7 +200,7 @@ body {
 }
 
 .newsholder{
-    margin-top: 15px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -206,10 +211,6 @@ body {
     font-family: 'lucida grande';
 }
 
-#newscontent > img{
-    width: 600px;
-}
-
 #newscontent{
     width: 600px;
 }
@@ -218,4 +219,48 @@ body {
     display: flex;
     flex-direction: column;
     width: 600px;
+}
+
+#newspage > img{
+    width: 600px;
+    border-radius: 20px;
+    height: auto;
+    display: block;
+}
+
+#newspage{
+    width:600px;
+    margin: 35px;
+    position: relative;
+    z-index: 0;
+}
+
+#hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    border-radius: 20px;
+    color: white;
+    padding: 15px;
+}
+
+#hover:hover{
+    opacity: 1;
+}
+
+.title{
+    margin-top: 15px;
+    z-index: 1;
+    font-size: larger;
+    width: fit-content;
+    position: absolute;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

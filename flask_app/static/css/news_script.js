@@ -4,21 +4,24 @@ const newsapi = "https://newsapi.org/v2/top-headlines?country=us&apiKey=11b0fa8c
 async function news(){
     const response = await fetch(newsapi);
     const data = await response.json();
-    console.log(data)
     return data
 }
 
 
 async function populate(){
     const data = await news()
+    var content = '';
     for(i = 1; i < 20; i ++){
-        console.log(data['articles'][i])
-        var content = '';
-        let img = document.querySelector(`.news${i}`)
-        content += `<img src="${data['articles'][i]['urlToImage']}">`
-        content += `<a href="${data['articles'][i]['url']}"><p>${data['articles'][i]['title']}</p></a>`
-        content += `<p> ${data['articles'][i]['content']}<p>`
-        img.innerHTML = content;
+        if(data['articles'][i]['urlToImage']){
+            let img = document.querySelector('.newsholder');
+            content += `<div id='newspage' class='news${i}'>`;
+            content += `<img src="${data['articles'][i]['urlToImage']}">`;
+            content += `<div id='hover'>`;
+            content += `<p> ${data['articles'][i]['content']} </p> </div>`;
+            content += `<div class='title'><a href="${data['articles'][i]['url']}"><p>${data['articles'][i]['title']}</p></a></div>`;
+            content += '</div>';
+            img.innerHTML = content;
+        }
     }
 }
 

@@ -14,9 +14,9 @@ def send(id):
         "user_id" : session['id']
     }
     if not Message.validate(data):
-        return redirect("/home")
+        return redirect("/messages")
     Message.new_message(data)
-    return redirect("/home")
+    return redirect("/messages")
 
 @app.route("/delete/<int:id>")
 def delete(id):
@@ -24,7 +24,7 @@ def delete(id):
         "id": id
     }
     Message.delete(data)
-    return redirect("/home")
+    return redirect("/messages")
 
 
 @app.route("/messages")
