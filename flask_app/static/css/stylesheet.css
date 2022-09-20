@@ -5,6 +5,10 @@ body {
     font-family: Arial, sans-serif;
 }
 
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .button{
     background-color: blue;
     color: black;
@@ -255,8 +259,7 @@ body {
 #hover:hover{
     opacity: 1;
 }
-
-.title{
+.title2{
     margin-top: 15px;
     z-index: 1;
     font-size: larger;

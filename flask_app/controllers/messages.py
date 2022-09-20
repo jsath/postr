@@ -41,4 +41,4 @@ def messages():
 
     unread = Message.unread(data)
     sent = Message.sent(data)
-    return render_template("messages.html", first=first, messages=messages, users=users, unread=unread, sent=sent)
+    return render_template("messages2.html", users=users)

@@ -18,7 +18,7 @@ async function populate(){
             content += `<img src="${data['articles'][i]['urlToImage']}">`;
             content += `<div id='hover'>`;
             content += `<p> ${data['articles'][i]['content']} </p> </div>`;
-            content += `<div class='title'><a href="${data['articles'][i]['url']}"><p>${data['articles'][i]['title']}</p></a></div>`;
+            content += `<div class='title2'><a href="${data['articles'][i]['url']}"><p>${data['articles'][i]['title']}</p></a></div>`;
             content += '</div>';
             img.innerHTML = content;
         }

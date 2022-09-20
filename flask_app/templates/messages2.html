@@ -4,34 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
+    <title>Messaging Platform</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet2.css') }}">
 </head>
 <body>
-    
+
     <nav class="nav">
         <div class="contents">
             <div class="left">
                 <a href="home"><h1 class="booknav">JohannBook</h1></a>
             </div>
             <div class="right">
-                <a href="/messages" class="nav-link">Messaging Platform</a>
+                <a href="/news" class="nav-link">News</a>
                 <a href="/home" class="nav-link">Home</a>
                 <a href="/logout"><button class="create-btn" >Logout</button></a> 
             </div>
         </div>
     </nav>
 
-    
-    <div class="newsholder">
-        <div id="newspage">
-            <h1>Gathering recent stories...</h1>
+    <div class="maincontain">
+        <div class="contain">
+            <h1 class="userheader">Users</h1>
+                {% for user in users %}
+                <a id='text' href=''><div class="usermessage">
+                    <div>
+                        <p id="text">{{user.first_name}}</p>
+                    </div>
+                </div></a>
+                {% endfor %}
         </div>
+
+        <div>
+
+            
+        </div>
+        
+        
     </div>
 
-
-
-<script src="static/css/news_script.js"></script>
+    
 </body>
 </html>
