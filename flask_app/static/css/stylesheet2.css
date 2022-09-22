@@ -20,6 +20,8 @@ body {
     z-index: 2;
 }
 
+
+
 .contents{
     display: flex;
     flex-direction: row;
@@ -71,10 +73,11 @@ body {
     margin-right: auto;
     margin-top: 100px;
     display: flex;
+    flex-direction: row;
 }
 
 .contain{
-    width: 75%;
+    width: 20%;
     margin-left: 15px;
 }
 
@@ -90,17 +93,21 @@ body {
     border-radius: 14px;
     margin-top: 5px;
     text-align: center;
+    text-decoration: none;
     opacity: 0.5;
 }
-.usermessage{
+
+.usermessage2{
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,0.9);
     height: 50px;
     width: 150px;
     border: #166fe5;
     border: 2px;
     border-radius: 14px;
+    margin-top: 5px;
     text-align: center;
     text-decoration: none;
 }
@@ -116,3 +123,99 @@ body {
     text-decoration: none;
     font-size: 20px;
 }
+
+#text2{
+    opacity: 1;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+
+.userheader{
+    margin-left: 25px;
+}
+
+
+.sendmessagebar{
+    background-color: white;
+    border-radius: 50px;
+    width: 200px;
+    height: 35px;
+}
+
+.sendmessageposition{
+    width: fit-content;
+    margin-left: auto;
+}
+
+
+.messagecontents{
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.sendmessage{
+    margin: 3px;
+    border-radius: 13px;
+}
+
+.messagedisplay{
+    width: 75%;
+    height: 400px;
+    border-radius: 14px;
+    border: 2px;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+
+.received{
+    background-color: gray;
+    border-radius: 13px;
+    padding: 5px;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    color: whitesmoke;
+}
+
+.sent{
+    background-color: #166fe5;
+    border-radius: 13px;
+    padding: 5px;
+    margin-left: auto;
+    height: fit-content;
+    width: fit-content;
+    color: whitesmoke;
+    margin-top: 0;
+}
+
+.senttime{
+    margin-left: auto;
+    width: fit-content;
+    height: 0px;
+    opacity: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.gottime{
+    width: fit-content;
+    opacity: 0;
+    height: 0px;
+    position: relative;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.received:hover + .gottime{
+    opacity: 1;
+    height: fit-content;
+
+}
+
+.sent:hover + .senttime{
+    opacity: 1;
+    height: fit-content;
+}
+
+

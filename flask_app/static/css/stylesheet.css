@@ -11,7 +11,7 @@ body {
 
 .button{
     background-color: blue;
-    color: black;
+    color: white;
     margin-bottom: 5px;
     height: fit-content;
     width: fit-content;
@@ -266,4 +266,77 @@ body {
     width: fit-content;
     position: absolute;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.addpost{
+    height: fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    display: flex; 
+    flex-direction: column;
+}
+
+.titleinput{
+    background-color: white;
+    border-radius: 13px;
+    border: 2px gray;
+}
+
+.contentinput{
+    background-color: white;
+    border-radius: 13px;
+    border: 2px gray;
+    width: 100%;
+    height: 400px;
+    
+}
+
+.postmain{
+    width: 500px;
+    height: 1000px;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow:scroll; 
+}
+
+.post{
+    width: 400px;
+    height: fit-content;
+    border: 2px solid beige;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.homerefresh{
+    width: fit-content;
+    margin-right: auto;
+}
+
+.likedisplay{
+    width: 350px;
+    margin-right: 15px;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.created{
+    margin-right: 50px;
+    margin-top: 25px;
+}
+
+.displaycontain{
+    width: 500px;
+    height: fit-content;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }

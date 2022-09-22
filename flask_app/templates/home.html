@@ -4,28 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JohannBook</title>
+    <title>PostR</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <script src="https://kit.fontawesome.com/0df3521c8c.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <nav class="nav">
         <div class="contents">
             <div class="left">
-                <h1 class="booknav">JohannBook</h1>
-                <h2>{{first}}</h2>
+                <h1 class="booknav">Postr</h1>
             </div>
             <div class="right">
-                <a href="/messages" class="nav-link">Messaging Platform</a>
-                <a href="/news" class="nav-link">News</a>
-                <a href="/logout"><button class="create-btn" >Logout</button></a> 
+                <a href="/addpost" class="nav-link"><i class="fa-solid fa-plus"></i> Add Post</a>
+                <a href="/messages/0" class="nav-link"><i class="fa-solid fa-message"></i> Messaging Platform</a>
+                <a href="/news" class="nav-link"><i class="fa-solid fa-newspaper"></i> News</a>
+                <a href="/logout"><button class="create-btn" >Logout <i class="fa-solid fa-right-from-bracket"></i></button></a> 
             </div>
         </div>
     </nav>
 
+    <div class="postmain">
+        <h4>React to some stories below {{first}}!   <a class="homerefresh" href="/home"><i class="fa-solid fa-rotate-right"></i></a></h4> 
+        
+        
+        {% if posts %} 
 
+        {% for post in posts %}
+            <div class="post">
+                <a href='display/{{post.id}}'><h3>{{post['title']}}</h3></a>
+                <p><strong>{{post['first_name']}} </strong>{{post['content']}}</p>
+                {% if post['liked'] %}
+                <div class="likedisplay">
+                    <div class="created">
+                        <p>{{post['created_at']}}</p>
 
+                    </div>
+                    
+                    <div>
+                        <a href="/unlike/{{post['id']}}/{{session['id']}}"><i class="fa-solid fa-heart"></i></a>
+                        <p>{{post['likes']}}</p>
+                    </div>
+                    
+                </div>
+                {% else %}
+                <div class="likedisplay">
+                    <div class="created">
+                        <p>{{post['created_at']}}</p>
+                    </div>
+
+                    <div> 
+                        <a href="/like/{{post['id']}}/{{session['id']}}"><i class="fa-regular fa-heart"></i></a>
+                        <p>{{post['likes']}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            
+            </div>
+        {% endfor %}
+
+        {% endif %}
     </div>
+
+
+
 
 
 </body>

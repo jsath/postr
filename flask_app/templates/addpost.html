@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
+    <title>Add Post</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
     <script src="https://kit.fontawesome.com/0df3521c8c.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    
     <nav class="nav">
         <div class="contents">
             <div class="left">
@@ -18,21 +18,35 @@
             </div>
             <div class="right">
                 <a href="/messages/0" class="nav-link"><i class="fa-solid fa-message"></i> Messaging Platform</a>
+                <a href="/news" class="nav-link"><i class="fa-solid fa-newspaper"></i> News</a>
                 <a href="/home" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
                 <a href="/logout"><button class="create-btn" >Logout <i class="fa-solid fa-right-from-bracket"></i></button></a> 
             </div>
         </div>
     </nav>
 
-    
-    <div class="newsholder">
-        <div id="newspage">
-            <h1>Gathering recent stories...</h1>
-        </div>
+    <div class="addpost"> 
+        <a href="/home" style="margin-left:auto;"><i class="fa-solid fa-arrow-left"></i></a>
+        <form action="/post" method="POST">
+            <label for="title">Title: </label>
+            <input class='titleinput' type="text" name="title"><br>
+            <label for="content">Content: </label>
+            <textarea class="contentinput" rows="5" cols="25" name="content"></textarea>
+            <button class="button" type="submit">Add Post</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p style="color:red">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
 
 
 
-<script src="static/css/news_script.js"></script>
+    </div>
+
+
 </body>
 </html>

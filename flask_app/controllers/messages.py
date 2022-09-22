@@ -13,22 +13,13 @@ def send(id):
         "send_to" : id, 
         "user_id" : session['id']
     }
-    if not Message.validate(data):
-        return redirect("/messages")
+
     Message.new_message(data)
-    return redirect("/messages")
-
-@app.route("/delete/<int:id>")
-def delete(id):
-    data = {
-        "id": id
-    }
-    Message.delete(data)
-    return redirect("/messages")
+    return redirect(f"/messages/{session['messageid']}")
 
 
-@app.route("/messages")
-def messages():
+@app.route("/messages/<int:id>")
+def messages(id):
     if session["access"] == False:
         return redirect('/')
     first = session["name"] 
@@ -36,9 +27,17 @@ def messages():
     users = User.get_all()
 
     data = { 
-        "id" : session['id']
+        "id" : session['id'],
+        "user_id" : id
     }
 
+    session['messageid'] = data['user_id']
+    if id != 0:
+        texts = Message.display(data)
+        id = session['messageid']
+        name = User.get_name(data)
+        return render_template('messages2.html', texts=texts, users=users, id=id, name=name)
+
     unread = Message.unread(data)
-    sent = Message.sent(data)
-    return render_template("messages2.html", users=users)
+    return render_template("messages2.html", users=users, unread=unread)
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Post</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <script src="https://kit.fontawesome.com/0df3521c8c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav class="nav">
+        <div class="contents">
+            <div class="left">
+                <a href="/home"><h1 class="booknav">PostR</h1></a>
+            </div>
+            <div class="right">
+                <a href="/messages/0" class="nav-link"><i class="fa-solid fa-message"></i> Messaging Platform</a>
+                <a href="/news" class="nav-link"><i class="fa-solid fa-newspaper"></i> News</a>
+                <a href="/home" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/logout"><button class="create-btn" >Logout <i class="fa-solid fa-right-from-bracket"></i></button></a> 
+            </div>
+        </div>
+    </nav> 
+
+    <div class="displaycontain">
+        <div class="post">
+            <a href="/home" style="margin-left:auto;"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3>{{post['title']}}</h3>
+            <p><strong>{{post['first_name']}} </strong>{{post['content']}}</p>
+            {% if post['liked'] %}
+            <div class="likedisplay">
+                <div class="created">
+                    <p>{{post['created_at']}}</p>
+    
+                </div>
+                
+                <div>
+                    <a href="/unlike2/{{post['id']}}/{{session['id']}}"><i class="fa-solid fa-heart"></i></a>
+                    <p>{{post['likes']}}</p>
+                </div>
+                
+            </div>
+            {% else %}
+            <div class="likedisplay">
+                <div class="created">
+                    <p>{{post['created_at']}}</p>
+                </div>
+    
+                <div> 
+                    <a href="/like2/{{post['id']}}/{{session['id']}}"><i class="fa-regular fa-heart"></i></a>
+                    <p>{{post['likes']}}</p>
+                </div>
+            </div>
+            {% endif %}
+        
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 # import the function that will return an instance of a connection
 from operator import is_
+from re import L
 from flask_app.config.mysqlconnection import connectToMySQL
 # model the class after the friend table from our database
 from flask_app import app
@@ -39,7 +40,7 @@ class Message:
     
     @classmethod 
     def new_message(cls, data):
-        query = "INSERT into pwall.messages(content, send_to, created_at, updated_at, user_id) values(%(content)s, %(send_to)s, NOW(), NOW(), %(user_id)s)"
+        query = "INSERT into pwall.messages(content, send_to, created_at, updated_at, user_id) values(%(content)s, %(send_to)s, NOW(), NOW(), %(user_id)s);"
         status = connectToMySQL('pwall').query_db( query, data )
         return status
     
@@ -63,11 +64,28 @@ class Message:
         count = status[0]["COUNT(content)"]
         return count
     
+
+    @classmethod
+    def display(cls,data):
+        query = "SELECT content, created_at, send_to, user_id FROM messages where messages.send_to = %(id)s and messages.user_id = %(user_id)s OR messages.send_to = %(user_id)s and messages.user_id = %(id)s ORDER BY created_at ASC;"
+        results = connectToMySQL('pwall').query_db( query, data )
+        texts = []
+
+        for content in results:
+            texts.append(content)
+        print(texts)
+
+        return texts
+
+
+
+        
+    
     @staticmethod
     def validate(data):
         is_valid = True
-        if len(data["content"]) < 5:
+        if len(data["content"]) < 2:
             is_valid = False
-            flash("Message must be longer than 5 characters!")
+            flash("Message must be longer than 2 characters!")
         
         return is_valid

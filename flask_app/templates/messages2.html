@@ -7,37 +7,85 @@
     <title>Messaging Platform</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet2.css') }}">
+    <script src="https://kit.fontawesome.com/0df3521c8c.js" crossorigin="anonymous"></script>
+    <script src="/static/css/text.js"></script>
 </head>
 <body>
 
     <nav class="nav">
         <div class="contents">
             <div class="left">
-                <a href="home"><h1 class="booknav">JohannBook</h1></a>
+                <a href="/home"><h1 class="booknav">PostR</h1></a>
             </div>
             <div class="right">
-                <a href="/news" class="nav-link">News</a>
-                <a href="/home" class="nav-link">Home</a>
-                <a href="/logout"><button class="create-btn" >Logout</button></a> 
+                <a href="/news" class="nav-link"><i class="fa-solid fa-newspaper"></i> News</a>
+                <a href="/home" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/logout"><button class="create-btn" >Logout <i class="fa-solid fa-right-from-bracket"></i></button></a> 
             </div>
         </div>
     </nav>
 
     <div class="maincontain">
+
+
         <div class="contain">
-            <h1 class="userheader">Users</h1>
+            {% if name %}
+                <h1 class="userheader">{{name}}</h1>
+            {% else %}
+                <h1 class="userheader">Users</h1>
+            {% endif %}
                 {% for user in users %}
-                <a id='text' href=''><div class="usermessage">
+                {% if user.id != session['id'] %}
+                {% if user.id == session['messageid'] %}
+                <a id='text' href='/messages/{{user.id}}'><div class="usermessage2">
+                    <div>
+                        <p id="text2">{{user.first_name}}</p>
+                    </div>
+                </div></a>
+                {% else %}
+                <a id='text' href='/messages/{{user.id}}'><div class="usermessage">
                     <div>
                         <p id="text">{{user.first_name}}</p>
                     </div>
                 </div></a>
+
+                {% endif %}
+                {% endif %}
                 {% endfor %}
         </div>
 
-        <div>
+        <div class="messagedisplay">
 
-            
+            <div class="messagecontents">
+                {% if texts %}
+                    {% for text in texts %}
+                        {% if text.send_to == session['id'] %}
+                            <p class="received">{{text['content']}}</p>
+                            <p class="gottime">{{text['created_at']}}</p>
+                        {% else %}
+                            <p class="sent">{{text['content']}}</p>
+                            <p class="senttime">{{text['created_at']}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+            </div>
+
+
+            <div class="sendmessageposition"> 
+                <div class="sendmessage">
+                    <form action="/send/{{id}}" method="POST">
+                        <a href='/messages/{{id}}'><i class="fa-solid fa-rotate-right"></i></a>
+                        <input class='sendmessagebar' type="text" name="content">
+                        {% if texts %}
+                        <button class='sendmessage' type="submit" value="Send">Send <i class="fa-solid fa-paper-plane"></i></button>
+                        {% else %}
+                        <button class='sendmessage' type="submit" value="Send">Start Conversation! <i class="fa-solid fa-paper-plane"></i></button>
+                        {% endif %}
+                    </form>
+                </div>
+
+
         </div>
         
         

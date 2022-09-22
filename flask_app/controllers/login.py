@@ -39,14 +39,6 @@ def register():
     session["access"] = True
     return redirect("/home")
 
-@app.route('/home')
-def home():
-    if session["access"] == False:
-        return redirect('/')
-    first = session["name"] 
-
-    return render_template("home.html",first=first)
-
 @app.route('/login', methods=['POST'])
 def login():
     data = { 

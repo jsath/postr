@@ -109,3 +109,10 @@ class User:
         status = connectToMySQL('pwall').query_db( query, data )
         id = status[0]['id']
         return id
+    
+    @classmethod
+    def get_name(cls, data):
+        query = "SELECT first_name from users WHERE id = %(user_id)s"
+        results = connectToMySQL('pwall').query_db( query, data )
+        return results[0]['first_name']
+    
