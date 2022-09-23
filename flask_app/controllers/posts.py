@@ -98,6 +98,9 @@ def add_comment(post_id):
         'comment' : request.form['comment']
     }
 
+    if not Comment.validate(data):
+        return redirect('/home')
+
     Comment.create_comment(data)
 
     return redirect('/home')
@@ -111,9 +114,14 @@ def add_comment2(post_id):
         'comment' : request.form['comment']
     }
 
+    if not Comment.validate(data):
+        return redirect(f'/display/{post_id}')
+
     Comment.create_comment(data)
 
     return redirect(f'/display/{post_id}')
+
+
 
 
 @app.route('/commentlike/<int:posts_id>/<int:users_id>/<int:comment_id>')

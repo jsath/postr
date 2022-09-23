@@ -31,10 +31,9 @@ class Comment:
             'comment_id': comment['comment_id'],
             'user_id' : data['users_id']
             }
-            print(comment)
+            
             comment['count'] = Comment_Like.count(data2)
             comment['liked'] = Comment_Like.liked(data2)
-            print(comment)
             comments.append(comment)
         
         
@@ -42,8 +41,9 @@ class Comment:
 
     @classmethod 
     def display_comment(cls, data):
-        query = "SELECT comments.comment, comments.comment_id, users.first_name FROM pwall.comments Left Join users on comments.user_id = users.id where post_id = %(id)s LIMIT 2;"
+        query = "SELECT comments.comment, comments.comment_id, users.first_name FROM pwall.comments Left Join users on comments.user_id = users.id where post_id = %(id)s LIMIT 1;"
         results = connectToMySQL('pwall').query_db( query, data )
+
 
         comments = []
         for comment in results:
@@ -52,7 +52,6 @@ class Comment:
             'comment_id': comment['comment_id'],
             'user_id' : data['users_id']
             }
-            print(comment)
             comment['count'] = Comment_Like.count(data2)
             comment['liked'] = Comment_Like.liked(data2)
             comments.append(comment)
@@ -64,3 +63,12 @@ class Comment:
         query = "INSERT into pwall.comments(post_id, user_id, comment, created_at, updated_at) values(%(post_id)s, %(user_id)s, %(comment)s, NOW(), NOW());"
         results = connectToMySQL('pwall').query_db( query, data )
         return results 
+    
+    @staticmethod
+    def validate(data):
+        is_valid = True
+        if len(data["comment"]) < 2:
+            is_valid = False
+            flash("Comment too short!")
+        return is_valid
+    

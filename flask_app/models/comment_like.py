@@ -44,8 +44,6 @@ class Comment_Like:
         query = "SELECT * FROM pwall.comments_likes WHERE comments_post_id = %(post_id)s and users_id = %(user_id)s and comments_comment_id = %(comment_id)s"
         status = connectToMySQL('pwall').query_db( query, data )
         if status:
-            print("status is true")
             return True 
         else: 
-            print("status is false")
             return False

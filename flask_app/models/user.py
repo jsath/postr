@@ -97,7 +97,6 @@ class User:
 
         users = []
         for user in results: 
-            print(user)
             users.append(cls(user)) 
         return users
 
