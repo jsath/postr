@@ -41,7 +41,7 @@ class Comment:
 
     @classmethod 
     def display_comment(cls, data):
-        query = "SELECT comments.comment, comments.comment_id, users.first_name FROM pwall.comments Left Join users on comments.user_id = users.id where post_id = %(id)s LIMIT 1;"
+        query = "SELECT comments.comment, comments.comment_id, comments.created_at, users.first_name FROM pwall.comments Left Join users on comments.user_id = users.id where post_id = %(id)s ORDER BY comments.created_at DESC LIMIT 1;"
         results = connectToMySQL('pwall').query_db( query, data )
 
 

@@ -1,5 +1,5 @@
 
-const newsapi = "https://newsapi.org/v2/top-headlines?country=us&apiKey=11b0fa8c03c0448b989105dcc2acecc7"
+const newsapi = "http://newsapi.org/v2/top-headlines?country=us&apiKey=11b0fa8c03c0448b989105dcc2acecc7"
 
 async function news(){
     const response = await fetch(newsapi);
