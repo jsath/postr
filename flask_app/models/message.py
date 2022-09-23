@@ -77,15 +77,10 @@ class Message:
 
         return texts
 
-
-
-        
-    
     @staticmethod
     def validate(data):
         is_valid = True
         if len(data["content"]) < 2:
             is_valid = False
-            flash("Message must be longer than 2 characters!")
         
         return is_valid

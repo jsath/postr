@@ -13,6 +13,8 @@ def send(id):
         "send_to" : id, 
         "user_id" : session['id']
     }
+    if not Message.validate(data):
+        return redirect(f"/messages/{session['messageid']}")
 
     Message.new_message(data)
     return redirect(f"/messages/{session['messageid']}")
