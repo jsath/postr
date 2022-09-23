@@ -4,6 +4,8 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash 
 from flask_app.models.like import Like
+from flask_app.models.comment import Comment
+from flask_app.models.comment_like import Comment_Like
 
 
 class Post:
@@ -26,8 +28,6 @@ class Post:
         query = "SELECT title, content, posts.created_at, first_name, posts.id FROM pwall.posts JOIN users on users.id= posts.user_id ORDER BY posts.created_at DESC;"
         results = connectToMySQL('pwall').query_db(query)
 
-
-
         posts = []
         for post in results: 
             data2 = { 
@@ -36,6 +36,7 @@ class Post:
             }
             post['likes'] = Like.count(data2)
             post['liked'] = Like.liked(data2)
+            post['comments'] = Comment.display_comment(data2)
             posts.append(post)
         return posts
     
@@ -59,5 +60,24 @@ class Post:
             }
         post['likes'] = Like.count(data2)
         post['liked'] = Like.liked(data2)
+        post['comments'] = Comment.get_post_comments(data2)
+
         return post
 
+    @classmethod 
+    def get_liked(cls, data):
+        query = "SELECT title, content, posts.created_at, first_name, posts.id, likes.users_id FROM pwall.posts JOIN users on users.id= posts.user_id join likes on likes.posts_id = posts.id WHERE likes.users_id = %(id)s"
+        results = connectToMySQL('pwall').query_db( query, data )
+
+        posts = []
+        for post in results: 
+            data2 = { 
+                'id' : post['id'],
+                'users_id' : data['id']
+            }
+            post['likes'] = Like.count(data2)
+            post['liked'] = Like.liked(data2)
+            post['comments'] = Comment.display_comment(data2)
+            posts.append(post)
+        return posts
+    

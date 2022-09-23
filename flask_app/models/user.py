@@ -92,13 +92,13 @@ class User:
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM users"
+        query = "SELECT * FROM users;"
         results = connectToMySQL('pwall').query_db(query)
 
         users = []
         for user in results: 
-            users.append(cls(user))
-            
+            print(user)
+            users.append(cls(user)) 
         return users
 
 

@@ -22,8 +22,6 @@ def send(id):
 def messages(id):
     if session["access"] == False:
         return redirect('/')
-    first = session["name"] 
-    messages = Message.get_all()
     users = User.get_all()
 
     data = { 
@@ -38,6 +36,5 @@ def messages(id):
         name = User.get_name(data)
         return render_template('messages2.html', texts=texts, users=users, id=id, name=name)
 
-    unread = Message.unread(data)
-    return render_template("messages2.html", users=users, unread=unread)
+    return render_template("messages2.html", users=users)
 

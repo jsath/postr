@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PostR</title>
+    <title>Liked Posts</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
     <script src="https://kit.fontawesome.com/0df3521c8c.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
+
     <nav class="nav">
         <div class="contents">
             <div class="left">
-                <h1 class="booknav">Postr</h1>
+                <a href="/home"><h1 class="booknav">PostR</h1></a>
             </div>
             <div class="right">
-                <a href="/addpost" class="nav-link"><i class="fa-solid fa-plus"></i> Add Post</a>
                 <a href="/messages/0" class="nav-link"><i class="fa-solid fa-message"></i> Messaging Platform</a>
                 <a href="/news" class="nav-link"><i class="fa-solid fa-newspaper"></i> News</a>
+                <a href="/home" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
                 <a href="/logout"><button class="create-btn" >Logout <i class="fa-solid fa-right-from-bracket"></i></button></a> 
             </div>
         </div>
-    </nav>
+    </nav> 
+
 
     <div class="postmain">
-        <h4>React to some stories below {{first}}!   <a class="homerefresh" href="/home"><i class="fa-solid fa-rotate-right"></i></a> <br>
-            <a href='/favorites' class="favorites"> <i class="fa-solid fa-heart"></i>Favorites</a></h4> 
+        <h4>Below are the posts you liked<a class="homerefresh" href="/favorites"><i class="fa-solid fa-rotate-right"></i></a>  <a href='/favorites'></a></h4> 
+        <a href="/home" style="margin-left:auto;"><i class="fa-solid fa-arrow-left"></i></a>
         
         
         {% if posts %} 
@@ -38,9 +39,9 @@
                 <p><strong>{{post['first_name']}} </strong>{{post['content']}}</p>
                 {% if post['liked'] %}
                 <div class="likedisplay">
-
                     <div class="created">
                         <p>{{post['created_at']}}</p>
+
                     </div>
                     
                     <div>
@@ -63,9 +64,8 @@
                 {% endif %}
                 <div>
                     {% if post['comments'] %}
-                    <h4><b>Comments</b></h4>
+                    <h4>Comments</h4>
                     {% for comment in post['comments'] %}
-                    <div class="commentvisual">
                     
                     {% if comment['liked'] %}
                     <div class="likedisplay">
@@ -74,7 +74,6 @@
                         </div>
                         <div>
                             <a href="/commentunlike/{{post['id']}}/{{session['id']}}/{{comment['comment_id']}}"><i class="fa-solid fa-heart"></i></a>
-                            
                             <p>{{comment['count']}}</p>
                         </div>
             
@@ -94,7 +93,6 @@
                     {% endif %}
                     {% endfor %}
                 
-                
                     <a href="display/{{post.id}}"><p>View All Comments</p></a>
                     {% endif %}
                 </div>
@@ -107,13 +105,10 @@
                 </div>
             </div>
         {% endfor %}
-
+        {% else %}
+        <h3>No Liked Stories Yet</h3>
         {% endif %}
     </div>
-
-
-
-
-
+    
 </body>
 </html>

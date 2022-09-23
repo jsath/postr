@@ -32,9 +32,8 @@
             <p><strong>{{post['first_name']}} </strong>{{post['content']}}</p>
             {% if post['liked'] %}
             <div class="likedisplay">
-                <div class="created">
+                <div>
                     <p>{{post['created_at']}}</p>
-    
                 </div>
                 
                 <div>
@@ -45,7 +44,7 @@
             </div>
             {% else %}
             <div class="likedisplay">
-                <div class="created">
+                <div>
                     <p>{{post['created_at']}}</p>
                 </div>
     
@@ -55,6 +54,48 @@
                 </div>
             </div>
             {% endif %}
+
+            <div>
+                {% if post['comments'] %}
+                <h4><b>Comments</b></h4>
+                {% for comment in post['comments'] %}
+                {% if comment['liked'] %}
+                    <div class="likedisplay">
+                        <div>
+                            <p><strong>{{comment['first_name']}} </strong>{{comment['comment']}}</p>
+                        </div>
+                        <div>
+                            <a href="/commentunlike2/{{post['id']}}/{{session['id']}}/{{comment['comment_id']}}"><i class="fa-solid fa-heart"></i></a>
+                            <p>{{comment['count']}}</p>
+                        </div>
+                        
+                    </div>
+                    {% else %}
+                    <div class="likedisplay">
+                        <div>
+                            <p><strong>{{comment['first_name']}} </strong>{{comment['comment']}}</p>
+                        </div>
+                        <div class="created">
+                            <p>{{comment['created_at']}}</p>
+                        </div>
+                        <div> 
+                            <a href="/commentlike2/{{post['id']}}/{{session['id']}}/{{comment['comment_id']}}"><i class="fa-regular fa-heart"></i></a>
+                            <p>{{comment['count']}}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+    
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div>
+                <form action="/addcomment2/{{post.id}}" method="POST">
+                    <input type="text" name="comment" placeholder="Comment" class="commentsubmit">
+                    <button type="submit" class="commentbutton">Post</button>
+                </form>
+            </div>
+            </div>
         
         </div>
     </div>
